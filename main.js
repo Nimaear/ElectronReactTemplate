@@ -4,6 +4,7 @@ import app from 'app';
 import BrowserWindow from 'browser-window';
 import path from "path";
 import fs from "fs";
+import PersistentStorage from 'PersistentStorage';
 
 let mainWindow = null;
 
@@ -15,14 +16,7 @@ app.on('window-all-closed', () => {
 
 app.on('ready', () => {
   let initPath = path.join(app.getDataPath(), "settings.json");
-  let data;
-  try {
-    data = JSON.parse(fs.readFileSync(initPath, 'utf8'));
-  }
-  catch(e) {
-    data = {};
-  }
-  let bounds = data.bounds || {};
+  let bounds = PersistentStorage.get('bounds', {});
 
   mainWindow = new BrowserWindow({
     width: bounds.width || 800,
@@ -41,10 +35,7 @@ app.on('ready', () => {
     mainWindow = null;
   });
   mainWindow.on('close', () => {
-    let data = {
-      bounds : mainWindow.getBounds()
-    }
-    fs.writeFileSync(initPath, JSON.stringify(data));
+    PersistentStorage.set('bounds', mainWindow.getBounds());
   });
 });
 
