@@ -28,6 +28,8 @@ var LightTheme = {
       accent3Color: accentColor[100].material,
       textColor: TextColors.text,
       canvasColor: ThemeColors.background,
+      statusBarColor: ThemeColors.statusBar,
+      cardColor: ThemeColors.card,
       borderColor: TextColors.divider,
       disabledColor: TextColors.disabled,
       primary1TextColor: Text[primaryColor[500].text].text,
@@ -38,7 +40,6 @@ var LightTheme = {
       accent3TextColor: Text[accentColor[100].text].text,
       primary: primary,
       accent: accent,
-
     };
   },
   getComponentThemes: function(palette) {
@@ -110,7 +111,7 @@ var LightTheme = {
         textColor: palette.primary1Color
       },
       paper: {
-        backgroundColor: ThemeColors.card,
+        backgroundColor: ThemeColors.background,
       },
       radioButton: {
         borderColor:  palette.textColor,
@@ -144,6 +145,16 @@ var LightTheme = {
         backgroundColor: '#323232',
         actionColor: palette.accent1Color
       },
+      textField: {
+        textColor: palette.textColor,
+        hintColor: palette.disabledColor,
+        floatingLabelColor: palette.textColor,
+        disabledTextColor: palette.disabledColor,
+        errorColor: Colors.red500,
+        focusColor: palette.primary1Color,
+        backgroundColor: 'transparent',
+        borderColor: palette.borderColor,
+      },
       timePicker: {
         color: ThemeColors.card,
         textColor: Colors.grey['600'],
@@ -162,10 +173,10 @@ var LightTheme = {
         trackDisabledColor: Colors.faintBlack
       },
       toolbar: {
-        backgroundColor: ColorManipulator.darken('#eeeeee', 0.05),
+        backgroundColor: palette.statusBarColor,
         height: 56,
         titleFontSize: 20,
-        iconColor: 'rgba(0, 0, 0, .40)',
+        iconColor: palette.primary1TextColor,
         separatorColor: 'rgba(0, 0, 0, .175)',
         menuHoverColor: 'rgba(0, 0, 0, .10)'
       },
